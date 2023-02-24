@@ -1,0 +1,52 @@
+{
+  "name": "react-solid-tdd-recoil-clean",
+  "version": "1.0.0",
+  "source": "./public/index.html",
+  "repository": "https://github.com/TomAndrewRocks/react-solid-clean.git",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "test": "jest --passWithNoTests --no-cache --runInBand",
+    "test:clear": "yarn test --clearCache",
+    "test:watch": "yarn test -- --watchAll",
+    "test:staged": "yarn test -- --findRelatedTests",
+    "test:ci": "yarn test -- --coverage"
+  },
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/faker": "^4.1.11",
+    "@types/jest": "25.2.1",
+    "@types/node": "13.13.5",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "@typescript-eslint/eslint-plugin": "2.31.0",
+    "@typescript-eslint/parser": "2.0.0",
+    "@vitejs/plugin-react": "^3.1.0",
+    "eslint": "6.8.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-config-standard-with-typescript": "11.0.1",
+    "eslint-plugin-import": "2.20.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-promise": "4.2.1",
+    "eslint-plugin-react": "7.19.0",
+    "eslint-plugin-standard": "4.0.1",
+    "faker": "^4.1.0",
+    "git-commit-msg-linter": "2.4.2",
+    "husky": "4.2.5",
+    "identity-obj-proxy": "3.0.0",
+    "jest": "25.5.4",
+    "lint-staged": "10.2.2",
+    "prettier": "^2.8.4",
+    "ts-jest": "25.5.0",
+    "typescript": "3.8.3",
+    "vite": "^4.1.4",
+    "yarn-upgrade-all": "^0.7.2"
+  },
+  "dependencies": {
+    "axios": "0.19.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
