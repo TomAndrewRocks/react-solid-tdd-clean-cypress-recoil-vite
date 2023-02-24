@@ -1,22 +1,33 @@
-/* eslint-disable-all*/
+/* eslint-disable lines-between-class-members */
 
 import faker from 'faker';
 import { RemoteAuth } from './remote-auth';
 import { HttpPostClientSpy } from '@/data/test/mock-http-client';
-import { mockAuth } from '@/domain/test/mock-auth';
+import {
+  mockAccountModel,
+  mockAuth,
+} from '@/domain/test/mock-account';
 import { InvalidCredentialsError } from '@/domain/errors/invalid-credentials-error';
 import { HttpStatusCode } from '@/data/protocols/http/http-response';
 import { UnexpectedError } from '@/domain/errors/unexpected-error';
+import { AuthParams } from '@/domain/usecases/auth';
+import { AccountModel } from '@/domain/models/accountModel';
 
 type SutTypes = {
   sut: RemoteAuth;
-  httpPostClientSpy: HttpPostClientSpy;
+  httpPostClientSpy: HttpPostClientSpy<
+    AuthParams,
+    AccountModel
+  >;
 };
 
 const makeSut = (
   url: string = faker.internet.url(),
 ): SutTypes => {
-  const httpPostClientSpy = new HttpPostClientSpy();
+  const httpPostClientSpy = new HttpPostClientSpy<
+    AuthParams,
+    AccountModel
+  >();
   const sut = new RemoteAuth(url, httpPostClientSpy);
   return {
     sut,
@@ -81,5 +92,16 @@ describe('RemoteAuth', () => {
     await expect(promise).rejects.toThrow(
       new UnexpectedError(),
     );
+  });
+
+  test('Should return AccountModel if HttpPost returns 200', async () => {
+    const { sut, httpPostClientSpy } = makeSut();
+    const httpResult = mockAccountModel();
+    httpPostClientSpy.response = {
+      statusCode: HttpStatusCode.ok,
+      body: httpResult,
+    };
+    const account = await sut.auth(mockAuth());
+    expect(account).toEqual(httpResult);
   });
 });
