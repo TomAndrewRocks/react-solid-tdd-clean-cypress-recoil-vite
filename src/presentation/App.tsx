@@ -1,5 +1,6 @@
-import React, { FC, ReactElement } from 'react';
+import React, { ReactElement, FC } from 'react';
+import { AppRoutes } from '../presentation/routes/routes';
 
 export const App: FC = (): ReactElement => {
-  return <div>App</div>;
+  return <AppRoutes />;
 };
