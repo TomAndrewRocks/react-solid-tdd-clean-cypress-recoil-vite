@@ -28,6 +28,10 @@ export const Form = styled.form`
     width: 100px;
     padding: 10px;
     border-radius: 4px;
+
+    :disabled {
+      background-color: #aaa;
+    }
   }
 `;
 
